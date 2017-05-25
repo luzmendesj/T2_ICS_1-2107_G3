@@ -7,10 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import java.text.DecimalFormat;
 
 public class entradaFloatPanel extends JPanel{
     String rotulo;
@@ -19,6 +21,9 @@ public class entradaFloatPanel extends JPanel{
     int valInic;
     int escala;
     
+    final DecimalFormat df;
+    final deslisadorFloat slider;
+    final JTextField text;
     
     entradaFloatPanel( String rotulo, int min, int max, int valInic, int escala ){
         super();
@@ -37,11 +42,12 @@ public class entradaFloatPanel extends JPanel{
         final JPanel p = new JPanel();
         p.setLayout( new GridLayout(2,0) );
         
-        final DecimalFormat df = new DecimalFormat("0.###");
-        final JTextField text = new JTextField(20);
+        df = new DecimalFormat("0.###");
+        text = new JTextField(20);
         text.setText( df.format( valInic/(escala * 1.0) ) );
-        deslisadorFloat slider = new deslisadorFloat( min, max, valInic, escala );
+        slider = new deslisadorFloat( min, max, valInic, escala );
         
+        /*
         slider.addChangeListener(new ChangeListener(){
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -65,11 +71,28 @@ public class entradaFloatPanel extends JPanel{
                 }
             }
         );
+        */
         
         p.add(text);
         p.add(slider);
         
         this.add(r1);
         this.add(p);
+    }
+    
+    /*
+    final DecimalFormat df;
+    final deslisadorFloat slider;
+    final JTextField text;
+    */
+    
+    DecimalFormat getDF(){
+        return df;
+    }
+    deslisadorFloat getSlider(){
+        return slider;
+    }
+    JTextField getText(){
+        return text;
     }
 }

@@ -11,7 +11,7 @@ public class instrumentoGUI extends JPanel{
 
     public JButton constroiBotao(String legenda, float tamanho) {
         JButton botao = new JButton(legenda);
-        botao.setMargin(new Insets(3, 3, 3, 3));
+        botao.setMargin(new Insets(4, 4, 4, 4));
         botao.setFocusable(false);
         botao.setFont(botao.getFont().deriveFont(Font.PLAIN));
         botao.setFont(botao.getFont().deriveFont(tamanho));

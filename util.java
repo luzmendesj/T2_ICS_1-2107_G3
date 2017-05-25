@@ -15,6 +15,9 @@ import javax.swing.*;
  * @author Paulo
  */
 public class util {
+    static Color corBG = new Color(230, 240, 255);
+    static Color corTitulo = new Color(180, 190, 255);
+    
     static final public JLabel constroiRotulo(String texto) {
         JLabel rotulo = new JLabel( texto, SwingConstants.CENTER );
         Color corTxt = new Color(60, 30, 100);

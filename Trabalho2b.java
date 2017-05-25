@@ -1,14 +1,5 @@
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
 
 import javax.sound.midi.*;
 import javax.swing.*;
@@ -22,9 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.plaf.metal.DefaultMetalTheme;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.plaf.metal.OceanTheme;
+import javax.swing.plaf.metal.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -43,16 +32,6 @@ public class Trabalho2b extends JFrame {
     // Para o estilo "Metal", duas opções de tema: "DefaultMetal" ou "Ocean"
     final static String TEMA = "Ocean";
     
-    final JButton entradaUniH1          = constroiBotao("Unidade-H 1");
-    final JButton entradaUniH2          = constroiBotao("Unidade-H 2");
-    final JButton entradaUniH3          = constroiBotao("Unidade-H 3");
-    final JButton entradaFreq           = constroiBotao("Frequencia");
-    
-    final JLabel MOSTRADORUniH1         = constroiRotulo("Unidade-H 1: ");
-    final JLabel MOSTRADORUniH2         = constroiRotulo("Unidade-H 2: ");
-    final JLabel MOSTRADORUniH3         = constroiRotulo("Unidade-H 3: ");
-    final JLabel MOSTRADORFreq          = constroiRotulo("Frequencia: ");
-    
     instrumento1 teste1 = new instrumento1();
     instrumento2 teste2 = new instrumento2();
     
@@ -66,28 +45,21 @@ public class Trabalho2b extends JFrame {
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         // Cria janela
-        JFrame frame = new JFrame("Trabalho 2 - Introdução a Computação Sônica");
+        JFrame frame = new JFrame("Trabalho 1 - Introdução a Computação Sônica");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Component componentes = criaComponentes();
-        //frame.getContentPane().add(componentes, BorderLayout.CENTER);
         
         JPanel imgPanel = new ImgPanel();
         
         imgPanel.add(componentes, BorderLayout.CENTER);
         frame.setContentPane(imgPanel);
-
-        /*
-        Component sliderVolume = criaComponentes();
-        frame.getContentPane().add(sliderVolume, BorderLayout.EAST);
-        */
-
         logo = new javax.swing.ImageIcon(getClass().getResource("logo.png"));
         frame.setIconImage(logo.getImage());
 
         //Display the window.
         frame.pack();
-        frame.setSize(1100, 900);
+        frame.setSize(1100, 740);
         frame.setVisible(true);
     }
     
@@ -95,13 +67,14 @@ public class Trabalho2b extends JFrame {
     	Image img = new ImageIcon(getClass().getResource("background.png")).getImage();
     	
     	public void paintComponent(Graphics g) {
-            g.drawImage(img, 0, 0, 1100, 800, this);
+            g.drawImage(img, 0, 0, 1100, 720, this);
         }
     }
     
     public Component criaComponentes() {
-        
-        JPanel painel = new JPanel(new GridLayout(3, 0));
+        JPanel painel = new JPanel();
+        painel.setLayout( new BoxLayout( painel, BoxLayout.Y_AXIS ) );
+        // JPanel painel = new JPanel(new GridLayout(3, 0));
 
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dimensao = tk.getScreenSize();
@@ -115,45 +88,21 @@ public class Trabalho2b extends JFrame {
         this.setLocation(posX, posY);
         this.setResizable(true);
         
-        // ESCOLHER MÚSICA
-        // escolhaMusicaGUI escM = new escolhaMusicaGUI();
-        
         // INSTRUMENTO A
         instrumento1GUI inst1 = new instrumento1GUI();
         
         // INSTRUMENTO B
         instrumento2GUI inst2 = new instrumento2GUI();
         
+        // ESCOLHER MÚSICA
+        escolheMelodia escM = new escolheMelodia( inst1.getInstrumento1(), inst2.getInstrumento2() );
+        
         // PAINEL
-        //painel.add(escM);
+        painel.add(escM);
         painel.add(inst1);
         painel.add(inst2);
         
         return painel;
-    }
-    
-    public JLabel constroiRotulo(String texto) {
-        JLabel rotulo = new JLabel( texto );
-        Color corTxt = new Color(60, 30, 100);
-        
-        rotulo.setFont( new Font("Serif", Font.PLAIN, 18) );
-        rotulo.setForeground(corTxt);
-        
-        return rotulo;
-    }
-    
-    public JButton constroiBotao(String legenda) {
-    // usa 9 como o tamanho de fonte default.
-        return constroiBotao(legenda, 9);
-    }
-
-    public JButton constroiBotao(String legenda, float tamanho) {
-        JButton botao = new JButton(legenda);
-        botao.setMargin(new Insets(3, 3, 3, 3));
-        botao.setFocusable(false);
-        botao.setFont(botao.getFont().deriveFont(Font.PLAIN));
-        botao.setFont(botao.getFont().deriveFont(tamanho));
-        return botao;
     }
     
     private static void iniciaEstilo() {

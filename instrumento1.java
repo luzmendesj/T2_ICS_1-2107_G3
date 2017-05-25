@@ -23,8 +23,8 @@ public class instrumento1 {
 		ganho1 = 1;
 		ganho2 = 1;
 		ganho3 = 1;
-		ganho4 = 1;
-		ganhoTotal = 1;
+		ganho4 = 4;
+		ganhoTotal = 4;
 		
 		h1 = 3;
 		h2 = 5;
@@ -108,9 +108,21 @@ public class instrumento1 {
 	     osci1 = new Oscilador(env4, ins);
 
 	     mel1 = ColecaoDeFrases.m23a();
-
 	}
+        
 	public void tocar(){
+            /*
+            float ganho1, ganho2, ganho3, ganho4, ganhoTotal;
+	   float h1, h2, h3;
+	   float lambda1, lambda2, lambda3;
+            */
+            System.out.println( );
+            System.out.println( ganho1 + " / " + h1 );
+            System.out.println( ganho2 + " / " + h2 );
+            System.out.println( ganho3 + " / " + h3 );
+            System.out.println( ganho4 );
+            System.out.println( ganhoTotal );
+            
 		Som som1 = mel1.getSom(osci1);
 		som1.setNome("instrumento1");
 	     som1.salvawave();
@@ -120,15 +132,15 @@ public class instrumento1 {
 	public void setHarmonico(int numH, float novoH){
 		switch(numH){
 		case 1:
-			h1 = numH;
+			h1 = novoH;
 			uh1.setH(h1);
 			break;
 		case 2:
-			h2 = numH;
+			h2 = novoH;
 			uh2.setH(h2);
 			break;
 		case 3:
-			h3 = numH;
+			h3 = novoH;
 			uh3.setH(h3);
 			break;
 		default:
@@ -136,8 +148,23 @@ public class instrumento1 {
 		}
 	}
 	
-	public void setMelodia(Melodia novaMelodia){
-		mel1 = novaMelodia;
+	public void setMelodia( String mel ){
+            String melodia[]={"Escolher Melodia","fraseparacorneingles","m23a","m25","m9_la_menor", 
+                    "segundamenor_trombone", "tercamaior2_harpa"};    
+            
+            if( mel.equals( melodia[1] ) == true ){
+                mel1 = ColecaoDeFrases.fraseparacorneingles();
+            } else if( mel.equals( melodia[3] ) == true ){
+                mel1 = ColecaoDeFrases.m25();
+            } else if( mel.equals( melodia[4] ) == true ){
+                mel1 = ColecaoDeFrases.m9_la_menor();
+            } else if( mel.equals( melodia[5] ) == true ){
+                mel1 = ColecaoDeFrases.segundamenor_trombone();
+            } else if( mel.equals( melodia[6] ) == true ){
+                mel1 = ColecaoDeFrases.tercamaior2_harpa();
+            } else {
+                mel1 = ColecaoDeFrases.m23a();
+            }
 	}
 	
 	public void setGanho(int numGanho, float novoGanho){

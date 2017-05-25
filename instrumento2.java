@@ -1,13 +1,13 @@
 import sintese.*;
 
 public class instrumento2 {
-	Melodia mel1;
+	private Melodia mel1;
 	
-	Oscilador osci1;
+	private Oscilador osci1;
 	
-	float freqCorte1, freqCorte2;
+	private float freqCorte1, freqCorte2;
 	
-	Ruido ruido1, ruido2;
+	private Ruido ruido1, ruido2;
 	
 	public instrumento2(){
 		freqCorte1 = 1f;
