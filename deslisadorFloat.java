@@ -13,6 +13,6 @@ public class deslisadorFloat extends JSlider{
     }
 
     public float getValorEscala() {
-        return ( (float) super.getValue() ) * this.escala;
+        return ( (float) super.getValue() ) / this.escala;
     }
 }
