@@ -66,11 +66,16 @@ public class Trabalho2b extends JFrame {
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         // Cria janela
-        JFrame frame = new JFrame("Trabalho 1 - Introdução a Computação Sônica");
+        JFrame frame = new JFrame("Trabalho 2 - Introdução a Computação Sônica");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Component componentes = criaComponentes();
-        frame.getContentPane().add(componentes, BorderLayout.CENTER);
+        //frame.getContentPane().add(componentes, BorderLayout.CENTER);
+        
+        JPanel imgPanel = new ImgPanel();
+        
+        imgPanel.add(componentes, BorderLayout.CENTER);
+        frame.setContentPane(imgPanel);
 
         /*
         Component sliderVolume = criaComponentes();
@@ -82,8 +87,16 @@ public class Trabalho2b extends JFrame {
 
         //Display the window.
         frame.pack();
-        frame.setSize(1100, 1000);
+        frame.setSize(1100, 900);
         frame.setVisible(true);
+    }
+    
+    class ImgPanel extends JPanel {
+    	Image img = new ImageIcon(getClass().getResource("background.png")).getImage();
+    	
+    	public void paintComponent(Graphics g) {
+            g.drawImage(img, 0, 0, 1100, 800, this);
+        }
     }
     
     public Component criaComponentes() {
