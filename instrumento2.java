@@ -10,7 +10,7 @@ public class instrumento2 {
 	Ruido ruido1, ruido2;
 	
 	public instrumento2(){
-		freqCorte1 = 10f;
+		freqCorte1 = 1f;
 		freqCorte2 = 100f;
 		
 		ruido1 = new Ruido();

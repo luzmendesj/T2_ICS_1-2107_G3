@@ -26,6 +26,11 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
 public class Trabalho2b extends JFrame {
 
     private String diretorio = System.getProperty("user.dir");
@@ -51,7 +56,7 @@ public class Trabalho2b extends JFrame {
     instrumento1 teste1 = new instrumento1();
     instrumento2 teste2 = new instrumento2();
     
-    public static void main2(String[] args) {
+    public static void main(String[] args) {
         Trabalho2b gui = new Trabalho2b();
     }
     
@@ -77,12 +82,13 @@ public class Trabalho2b extends JFrame {
 
         //Display the window.
         frame.pack();
-        frame.setSize(600, 700);
+        frame.setSize(1100, 1000);
         frame.setVisible(true);
     }
     
     public Component criaComponentes() {
-        JPanel painel = new JPanel(new GridLayout(5, 0));
+        
+        JPanel painel = new JPanel(new GridLayout(3, 0));
 
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dimensao = tk.getScreenSize();
@@ -96,124 +102,20 @@ public class Trabalho2b extends JFrame {
         this.setLocation(posX, posY);
         this.setResizable(true);
         
-        // inicializar os botões
-        entradaUniH1.setEnabled(true);
-        entradaUniH2.setEnabled(true);
-        entradaUniH3.setEnabled(true);
-        entradaFreq.setEnabled(true);
-
-        painel.setLayout(new GridLayout(4,0));
-
-        Color corBG = new Color(230, 240, 255);
-        JPanel p1 = new JPanel();
-        p1.setBackground(corBG);
-        JPanel p2 = new JPanel();
-        p2.setBackground(corBG);
-        JPanel p3 = new JPanel();
-        p3.setBackground(corBG);
-        JPanel p4 = new JPanel();
-        p4.setBackground(corBG);
-
-        // fazer os ActionListeners para os botões
-        entradaUniH1.addActionListener(
-            new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                {
-                    teste1.tocar();
-                }
-            }
-        );
+        // ESCOLHER MÚSICA
+        // escolhaMusicaGUI escM = new escolhaMusicaGUI();
         
-        entradaUniH2.addActionListener(
-            new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                {
-                    teste2.tocar();
-                }
-            }
-        );
+        // INSTRUMENTO A
+        instrumento1GUI inst1 = new instrumento1GUI();
         
-        entradaUniH3.addActionListener(
-            new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                {
-                    
-                }
-            }
-        );
+        // INSTRUMENTO B
+        instrumento2GUI inst2 = new instrumento2GUI();
         
-        entradaFreq.addActionListener(
-            new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                {
-                    
-                }
-            }
-        );
-
-        p1.add( MOSTRADORUniH1 );
-        p1.add( entradaUniH1 );
+        // PAINEL
+        //painel.add(escM);
+        painel.add(inst1);
+        painel.add(inst2);
         
-        p2.add( MOSTRADORUniH2 );
-        p2.add( entradaUniH2 );
-        
-        p3.add( MOSTRADORUniH3 );
-        p3.add( entradaUniH3 );
-        
-        p4.add( MOSTRADORFreq );
-        p4.add( entradaFreq );
-
-        /*
-        sliderProgresso.setPreferredSize(new Dimension(200,20));
-        sliderProgresso.setFocusable(false);
-        p3.add(MOSTRADORinstante);
-        p3.add(sliderProgresso);
-        */
-        //Adiciona o panel ao frame
-        
-        JLabel r1 = constroiRotulo("TESTE 1");
-        r1.setBackground(corBG);
-        JPanel p1b = new JPanel(new GridLayout(2, 0));
-        p1b.add(p1);
-        p1b.add(r1);
-        p1b.setBorder(BorderFactory.createLineBorder(Color.blue));
-        JLabel r2 = constroiRotulo("TESTE 2");
-        r2.setBackground(corBG);
-        JPanel p2b = new JPanel(new GridLayout(2, 0));
-        p2b.add(p2);
-        p2b.add(r2);
-        p2b.setBorder(BorderFactory.createLineBorder(Color.blue));
-        JLabel r3 = constroiRotulo("TESTE 3");
-        r3.setBackground(corBG);
-        JPanel p3b = new JPanel(new GridLayout(2, 0));
-        p3b.add(p3);
-        p3b.add(r3);
-        p3b.setBackground(corBG);
-        p3b.setBorder(BorderFactory.createLineBorder(Color.blue));
-        
-        JPanel p1c = new JPanel();
-        p1c.setBackground(corBG);
-        
-        p1c.add(p1b);
-        p1c.add(p2b);
-        p1c.add(p3b);
-        
-        /*
-        painel.add(p1);
-        painel.add(p2);
-        painel.add(p3);
-        painel.add(p4);
-        */
-        painel.add(p1c);
-        painel.add( new instrumento2GUI() );
-        painel.add( new instrumento1GUI() );
-        
-        painel.setBorder(BorderFactory.createLineBorder(Color.blue));
-
         return painel;
     }
     
